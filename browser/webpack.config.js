@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path")
 const webpack = require("webpack")
 
@@ -30,5 +32,8 @@ module.exports = {
         publicPath: "http://localhost:3000/dist/",
         hotOnly: true
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [
+        new webpack.DefinePlugin({ "" }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }
