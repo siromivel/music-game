@@ -18,7 +18,7 @@ contract MusicGame {
     }
 
     function teach(address _master, address _student) public returns(bool success) {
-        require(musicSchool.lesson(_master, _student), "They just can't be taught");
+        require(musicSchool.lesson(_master, _student), "LESSON_FAILED");
         instrumentToken.grantInstrument(_master);
         instrumentToken.grantInstrument(_student);
         return success;
