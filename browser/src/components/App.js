@@ -1,5 +1,7 @@
+"use strict"
+
 import React, { Component } from "react"
-import "./styles/App.css"
+import "../styles/App.css"
 
 class App extends Component {
     randomCatGif() {
@@ -12,6 +14,8 @@ class App extends Component {
             <div className="main">
                 <h1 className="text-center">Welcome to Music School</h1>
                 <img className="cat-header" src={this.randomCatGif()} />
+
+                <MusicGame />
             </div>
         )
     }
