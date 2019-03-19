@@ -1,6 +1,7 @@
 "use strict"
 
 import React, { Component } from "react"
+import MusicSchool from "./MusicSchool"
 import "../styles/App.css"
 
 class App extends Component {
@@ -13,9 +14,9 @@ class App extends Component {
         return (
             <div className="main">
                 <h1 className="text-center">Welcome to Music School</h1>
-                <img className="cat-header" src={this.randomCatGif()} />
+                <img className="block-center" src={this.randomCatGif()} />
 
-                <MusicGame />
+                <MusicSchool className="text-center" />
             </div>
         )
     }
