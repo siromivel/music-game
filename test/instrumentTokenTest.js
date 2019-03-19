@@ -18,22 +18,22 @@ contract("InstrumentToken", function([owner, ...otherAddresses]) {
         it("correctly grants tokens to the student and teacher", async function() {
             let studentBalance = await this.instrumentToken.balanceOf(otherAddresses[0])
             let teacherBalance = await this.instrumentToken.balanceOf(owner)
-            expect(studentBalance.words[0]).to.equal(0)
-            expect(teacherBalance.words[0]).to.equal(1)
+            studentBalance.words[0].should.to.equal(0)
+            teacherBalance.words[0].should.to.equal(1)
 
             await this.instrumentToken.musicLesson(otherAddresses[0])
             
             studentBalance = await this.instrumentToken.balanceOf(otherAddresses[0])
             teacherBalance = await this.instrumentToken.balanceOf(owner)
-            expect(studentBalance.words[0]).to.equal(1)
-            expect(teacherBalance.words[0]).to.equal(2)
+            studentBalance.words[0].should.to.equal(1)
+            teacherBalance.words[0].should.to.equal(2)
         })
 
         it("only a wallet holding a token can give lessons", async function() {
             let studentBalance = await this.instrumentToken.balanceOf(otherAddresses[0])
             let teacherBalance = await this.instrumentToken.balanceOf(otherAddresses[1])
-            expect(studentBalance.words[0]).to.equal(0)
-            expect(teacherBalance.words[0]).to.equal(0)
+            studentBalance.words[0].should.to.equal(0)
+            teacherBalance.words[0].should.to.equal(0)
 
             await this.instrumentToken.musicLesson(otherAddresses[0], { from: otherAddresses[1] })
                 .should.be.rejectedWith(/Only a master can give lessons/)
@@ -41,7 +41,6 @@ contract("InstrumentToken", function([owner, ...otherAddresses]) {
 
         it("can only give lessons to a wallet with no tokens", async function() {
             await this.instrumentToken.musicLesson(otherAddresses[0])
-
             await this.instrumentToken.musicLesson(otherAddresses[0])
                 .should.be.rejectedWith(/You cannot teach a master/)
         })
