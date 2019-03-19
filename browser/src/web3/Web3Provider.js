@@ -1,10 +1,11 @@
 import { ethers } from "ethers"
 import { MusicGame } from "./MusicGame";
-const musicSchool = require("../../../build/contracts/InstrumentToken.json")
+const instrumentToken = require("../../../build/contracts/InstrumentToken.json")
+const musicGameConfig = require("../../music-game-config.json")
 
 export class Web3 {
     constructor() {
         this.provider = new ethers.providers.Web3Provider(web3.currentProvider)
-        this.musicGame = new MusicGame("0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B", musicSchool.abi, this.provider.getSigner())
+        this.musicGame = new MusicGame(musicGameConfig.local, instrumentToken.abi, this.provider.getSigner())
     }
 }

@@ -5,7 +5,7 @@ import { Web3 } from "../web3/Web3Provider"
 export default class MusicGame extends Component {
     constructor() {
         super()
-        this.web3 = new Web3()
+        this.musicGame = new Web3().musicGame
         this.state = {
             userBalance: "",
             studentAddress: "",
@@ -15,8 +15,8 @@ export default class MusicGame extends Component {
 
     async componentDidMount() {
         this.setState({
-            tokenName: await this.web3.musicGame.getName(),
-            userBalance: await this.web3.musicGame.getBalance()
+            tokenName: await this.musicGame.getName(),
+            userBalance: await this.musicGame.getBalance()
         })
 
         this.tokenDataLoaded = true
@@ -27,7 +27,7 @@ export default class MusicGame extends Component {
     }
 
     async giveLesson() {
-        await this.web3.musicGame.giveLesson(this.state.studentAddress)
+        await this.musicGame.giveLesson(this.state.studentAddress)
     }
 
     handleStudentAddressChange(event) {
@@ -35,7 +35,7 @@ export default class MusicGame extends Component {
     }
 
     async updateBalance() {
-        this.setState({ userBalance: await this.web3.musicGame.getBalance() })
+        this.setState({ userBalance: await this.musicGame.getBalance() })
     }
 
     render() {
