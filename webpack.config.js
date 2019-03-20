@@ -3,14 +3,13 @@ const path = require("path")
 const webpack = require("webpack")
 
 module.exports = {
-    entry: path.resolve(__dirname, "browser/src/index.js"),
+    entry: path.resolve(__dirname, "browser/src/index.tsx"),
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-                options: { presets: ["@babel/preset-react"] }
+                test: /\.(ts|tsx)$/,
+                loader: "awesome-typescript-loader",
+                exclude: path.resolve(__dirname, 'server')
             },
             {
                 test: /\.css$/,
@@ -22,7 +21,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".js", ".jsx"]
+        extensions: [".ts", ".tsx", ".js", ".jsx",]
     },
     output: {
         path: path.resolve(__dirname, "browser/dist/"),

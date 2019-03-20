@@ -12,6 +12,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.margin-top-one {
+    margin-top: 1rem;
+}
+
 .text-center {
     text-align: center
 }

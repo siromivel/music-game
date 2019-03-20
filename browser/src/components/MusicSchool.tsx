@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Web3Provider } from "../web3/Web3Provider"
+import { Web3 } from "../web3/Web3"
 import { MusicGame } from "../web3/MusicGame"
 
 interface SchoolState {
@@ -9,14 +9,13 @@ interface SchoolState {
     userBalance: string
 }
 
-export class MusicSchool extends Component<{ className: string }, SchoolState> {
+export class MusicSchool extends Component<{}, SchoolState> {
     public musicGame: MusicGame
-    private window: any
 
-    constructor(props: { className: string, web3: any }) {
+    constructor(props: { web3: any }) {
         super(props)
 
-        this.musicGame = new Web3Provider().musicGame
+        this.musicGame = new Web3().musicGame
         this.state = {
             userBalance: "",
             studentAddress: "",
@@ -32,20 +31,20 @@ export class MusicSchool extends Component<{ className: string }, SchoolState> {
         })
     }
 
-    async giveLesson() {
-        try {
-            await this.musicGame.giveLesson(this.state.studentAddress)
-        } catch(err) {
-            console.error(err)
-        }
-    }
-
     async updateBalance() {
         this.setState({ userBalance: await this.musicGame.getBalance() })
     }
 
-    getFormattedBalanceText() {
+    getFormattedBalanceText(): string {
         return `You have ${this.state.userBalance + " " + this.state.tokenName + (this.state.userBalance == "1" ? "" : "s")}.`
+    }
+
+    giveLesson() {
+        try {
+            this.musicGame.giveLesson(this.state.studentAddress)
+        } catch(err) {
+            console.error(err)
+        }
     }
 
     handleStudentAddressChange(event: React.FormEvent<HTMLInputElement>) {
@@ -54,7 +53,7 @@ export class MusicSchool extends Component<{ className: string }, SchoolState> {
 
     render() {
         return (
-            <div className="text-center">
+            <div className="text-center margin-top-one">
                 <button onClick={this.giveLesson.bind(this)}>Give Lesson</button>
                 <input
                     type="text"

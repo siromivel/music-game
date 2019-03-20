@@ -14,7 +14,7 @@ export class App extends Component {
                 <h1 className="text-center">Welcome to Music School</h1>
                 <img className="block-center" src={this.randomCatGif()} />
 
-                <MusicSchool className="text-center" />
+                <MusicSchool />
             </div>
         )
     }
