@@ -1,19 +1,18 @@
 import React, { Component } from "react"
 import { InstrumentToken } from "../web3/InstrumentToken"
 
-export class InstrumentList extends Component<{ instrumentToken: InstrumentToken }, { instrumentToken: InstrumentToken, tokens: number[] }> {
+export class InstrumentList extends Component<{ instrumentToken: InstrumentToken }, { tokens: number[] }> {
 
     constructor(props: { instrumentToken: InstrumentToken }) {
         super(props)
         
         this.state = {
-            instrumentToken: props.instrumentToken,
             tokens: []
         }
     }
 
     async componentDidMount() {
-        this.setState({ tokens: await this.state.instrumentToken.getTokensOfUser() })
+        this.setState({ tokens: await this.props.instrumentToken.getTokensOfUser() })
     }
 
     tokensListItems(): JSX.Element[] {

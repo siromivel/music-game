@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Ethereum } from "../web3/Ethereum"
 import { InstrumentList } from "./InstrumentList"
 import { InstrumentToken } from "../web3/InstrumentToken"
+import { MusicLesson } from "./MusicLesson"
 
 interface SchoolState {
     studentAddress: string,
@@ -41,33 +42,14 @@ export class MusicSchool extends Component<{}, SchoolState> {
         return `You have ${this.state.userBalance + " " + this.state.tokenName + (this.state.userBalance == "1" ? "" : "s")}.`
     }
 
-    giveLesson() {
-        try {
-            this.instrumentToken.giveLesson(this.state.studentAddress)
-        } catch(err) {
-            console.error(err)
-        }
-    }
-
-    handleStudentAddressChange(event: React.FormEvent<HTMLInputElement>) {
-        this.setState({ studentAddress: event.currentTarget.value })
-    }
-
     render() {
         return (
             <div className="text-center margin-top-one">
-                <button onClick={this.giveLesson.bind(this)}>Give Lesson</button>
-                <input
-                    type="text"
-                    name="studentAddress"
-                    value={this.state.studentAddress} 
-                    onChange={this.handleStudentAddressChange.bind(this)}
-                />
-
                 <div>
                     {this.state.tokenName ? this.getFormattedBalanceText() : ""}
                 </div>
 
+                <MusicLesson instrumentToken={this.instrumentToken} />
                 <InstrumentList instrumentToken={this.instrumentToken} />
             </div>
         )
