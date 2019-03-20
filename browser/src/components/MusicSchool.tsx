@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Ethereum } from "../web3/Ethereum"
-import { MusicGame } from "../web3/MusicGame"
+import { InstrumentList } from "./InstrumentList"
+import { InstrumentToken } from "../web3/InstrumentToken"
 
 interface SchoolState {
     studentAddress: string,
@@ -10,13 +11,13 @@ interface SchoolState {
 }
 
 export class MusicSchool extends Component<{}, SchoolState> {
-    public musicGame: MusicGame
+    public instrumentToken: InstrumentToken
 
     constructor(props: {}) {
         super(props)
         Ethereum.getWeb3FromBrowser()
 
-        this.musicGame = new Ethereum().musicGame
+        this.instrumentToken = new Ethereum().instrumentToken
         this.state = {
             userBalance: "",
             studentAddress: "",
@@ -27,13 +28,13 @@ export class MusicSchool extends Component<{}, SchoolState> {
 
     async componentDidMount() {
         this.setState({
-            tokenName: await this.musicGame.getName(),
-            userBalance: await this.musicGame.getBalance()
+            tokenName: await this.instrumentToken.getName(),
+            userBalance: await this.instrumentToken.getBalance()
         })
     }
 
     async updateBalance() {
-        this.setState({ userBalance: await this.musicGame.getBalance() })
+        this.setState({ userBalance: await this.instrumentToken.getBalance() })
     }
 
     getFormattedBalanceText(): string {
@@ -42,7 +43,7 @@ export class MusicSchool extends Component<{}, SchoolState> {
 
     giveLesson() {
         try {
-            this.musicGame.giveLesson(this.state.studentAddress)
+            this.instrumentToken.giveLesson(this.state.studentAddress)
         } catch(err) {
             console.error(err)
         }
@@ -64,8 +65,10 @@ export class MusicSchool extends Component<{}, SchoolState> {
                 />
 
                 <div>
-                    { this.state.tokenName ? this.getFormattedBalanceText() : "" }
+                    {this.state.tokenName ? this.getFormattedBalanceText() : ""}
                 </div>
+
+                <InstrumentList instrumentToken={this.instrumentToken} />
             </div>
         )
     }

@@ -46,7 +46,7 @@ contract("InstrumentToken", function([owner, ...otherAddresses]) {
         })
     })
 
-    describe("getTokensOfOwner", function() {
+    describe("getTokensOfSender", function() {
         it("correctly returns a list of tokens owned by an address", async function() {
             await this.instrumentToken.musicLesson(otherAddresses[0])
 

@@ -1,17 +1,16 @@
 import { ethers } from "ethers"
 import { Web3Provider } from "ethers/providers"
-import instrumentToken from "../../../build/contracts/InstrumentToken.json"
-import musicGameConfig from "../../music-game-config.json"
-import { MusicGame } from "./MusicGame"
+import instrumentTokenJson from "../../../build/contracts/InstrumentToken.json"
+import instrumentTokenConfig from "../../instrument-token-config.json"
+import { InstrumentToken } from "./InstrumentToken"
 
 export class Ethereum {
-    public musicGame: MusicGame
+    public instrumentToken: InstrumentToken
     private web3: Web3Provider
 
     constructor() {
         this.web3 = new ethers.providers.Web3Provider((window as any).web3.currentProvider)
-
-        this.musicGame = new MusicGame(musicGameConfig.local, JSON.stringify(instrumentToken.abi), this.web3)
+        this.instrumentToken = new InstrumentToken(instrumentTokenConfig.local, JSON.stringify(instrumentTokenJson.abi), this.web3)
     }
 
     public static getWeb3FromBrowser() {
