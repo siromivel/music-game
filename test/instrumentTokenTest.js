@@ -45,4 +45,22 @@ contract("InstrumentToken", function([owner, ...otherAddresses]) {
                 .should.be.rejectedWith(/You cannot teach a master/)
         })
     })
+
+    describe("getTokensOfOwner", function() {
+        it("correctly returns a list of tokens owned by an address", async function() {
+            await this.instrumentToken.musicLesson(otherAddresses[0])
+
+            const noTokens = await this.instrumentToken.getTokensOfSender({ from: otherAddresses[1] })
+            const studentTokens = await this.instrumentToken.getTokensOfSender({ from: otherAddresses[0] })
+            const teacherTokens = await this.instrumentToken.getTokensOfSender()
+
+            mapSolidityUintArrToArr(noTokens).should.eql([])
+            mapSolidityUintArrToArr(studentTokens).should.eql([1])
+            mapSolidityUintArrToArr(teacherTokens).should.eql([0, 2])
+        })
+    })
 })
+
+function mapSolidityUintArrToArr(arr) {
+    return arr.map(val => val.words[0])
+}

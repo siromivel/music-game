@@ -21,4 +21,9 @@ contract InstrumentToken is ERC721Full {
 
         return true;
     }
+
+    function getTokensOfSender() external view returns(uint256[] memory) {
+        if (balanceOf(msg.sender) == 0) return new uint256[](0);
+        return _tokensOfOwner(msg.sender);
+    }
 }
