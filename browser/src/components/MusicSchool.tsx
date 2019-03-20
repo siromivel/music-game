@@ -1,17 +1,18 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import { Ethereum } from "../web3/Ethereum"
-import { InstrumentList } from "./InstrumentList"
+import { NftList } from "./NftList"
 import { InstrumentToken } from "../web3/InstrumentToken"
 import { MusicLesson } from "./MusicLesson"
+import { SymbolToGifMap } from "../constants/SymbolToGifMap"
+import { TokenBalance } from "./TokenBalance"
 
-interface SchoolState {
-    studentAddress: string,
+type SchoolState = {
     tokenName: string,
     tokenSymbol: string,
-    userBalance: string
+    balance: number | ""
 }
 
-export class MusicSchool extends Component<{}, SchoolState> {
+export class MusicSchool extends PureComponent<{}, SchoolState> {
     public instrumentToken: InstrumentToken
 
     constructor(props: {}) {
@@ -20,8 +21,7 @@ export class MusicSchool extends Component<{}, SchoolState> {
 
         this.instrumentToken = new Ethereum().instrumentToken
         this.state = {
-            userBalance: "",
-            studentAddress: "",
+            balance: "",
             tokenName: "",
             tokenSymbol: ""
         }
@@ -29,28 +29,30 @@ export class MusicSchool extends Component<{}, SchoolState> {
 
     async componentDidMount() {
         this.setState({
+            balance: await this.instrumentToken.getBalance(),
             tokenName: await this.instrumentToken.getName(),
-            userBalance: await this.instrumentToken.getBalance()
+            tokenSymbol: await this.instrumentToken.getSymbol()
         })
     }
 
-    async updateBalance() {
-        this.setState({ userBalance: await this.instrumentToken.getBalance() })
-    }
-
-    getFormattedBalanceText(): string {
-        return `You have ${this.state.userBalance + " " + this.state.tokenName + (this.state.userBalance == "1" ? "" : "s")}.`
+    getCatGifType(symbol: string): string {
+        return this.state.balance ? SymbolToGifMap[symbol as keyof typeof SymbolToGifMap] : "pixel"
     }
 
     render() {
         return (
             <div className="text-center margin-top-one">
-                <div>
-                    {this.state.tokenName ? this.getFormattedBalanceText() : ""}
-                </div>
+                {this.state.tokenSymbol ?
+                    <img
+                        className={`${this.getCatGifType(this.state.tokenSymbol)}-cat-gif block-center`}
+                        src={`../assets/${this.getCatGifType(this.state.tokenSymbol)}cat.gif`}
+                    />
+                : ""}
+                <h1 className="text-center">Welcome to {this.state.tokenName} School</h1>
 
+                <TokenBalance balance={this.state.balance} symbol={this.state.tokenSymbol} />
                 <MusicLesson instrumentToken={this.instrumentToken} />
-                <InstrumentList instrumentToken={this.instrumentToken} />
+                <NftList instrumentToken={this.instrumentToken} />
             </div>
         )
     }

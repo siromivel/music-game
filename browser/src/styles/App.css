@@ -8,6 +8,10 @@ body {
     display: block;
 }
 
+.fiddle-cat-gif {
+    max-width: 200px;
+}
+
 .main {
     font-family: Arial, Helvetica, sans-serif;
 }

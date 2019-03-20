@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import { InstrumentToken } from "../web3/InstrumentToken"
 
-export class InstrumentList extends Component<{ instrumentToken: InstrumentToken }, { tokens: number[] }> {
+export class NftList extends PureComponent<{ instrumentToken: InstrumentToken }, { tokens: number[] }> {
 
     constructor(props: { instrumentToken: InstrumentToken }) {
         super(props)
@@ -15,7 +15,7 @@ export class InstrumentList extends Component<{ instrumentToken: InstrumentToken
         this.setState({ tokens: await this.props.instrumentToken.getTokensOfUser() })
     }
 
-    tokensListItems(): JSX.Element[] {
+    nftListItems(): JSX.Element[] {
         return(this.state.tokens.map((token, idx) => {
             return <li key={idx}>{token}</li>
         }))
@@ -24,7 +24,7 @@ export class InstrumentList extends Component<{ instrumentToken: InstrumentToken
     render() {
         return(
             <ul className="token-list">
-                {this.tokensListItems()}
+                {this.nftListItems()}
             </ul>
         )
     }

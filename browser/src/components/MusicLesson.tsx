@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import { InstrumentToken } from "../web3/InstrumentToken";
 
-export class MusicLesson extends Component<{ instrumentToken: InstrumentToken }, { studentAddress: string }> {
+export class MusicLesson extends PureComponent<{ instrumentToken: InstrumentToken }, { studentAddress: string }> {
 
     constructor(props: { instrumentToken: InstrumentToken }) {
         super(props)

@@ -10,6 +10,7 @@ export class Ethereum {
 
     constructor() {
         this.web3 = new ethers.providers.Web3Provider((window as any).web3.currentProvider)
+
         this.instrumentToken = new InstrumentToken(instrumentTokenConfig.local, JSON.stringify(instrumentTokenJson.abi), this.web3)
     }
 
