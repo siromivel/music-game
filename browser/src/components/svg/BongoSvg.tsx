@@ -3,9 +3,8 @@ import React, { CSSProperties } from "react"
 type BongoProps = {
     primary: string, //"#FFE477" 
     secondary: string, //"#FFA733"
-    tertiary: string,  // "#FFC477"
-    quaternary: string, //"#FFF5CC"
-    quinary: string //"#EE8700"
+    tertiary: string,  // "#FFF5CC"
+    quaternary: string, //"#FFC477"
 }
 
 export const BongoSvg = (props: BongoProps) => {
@@ -15,21 +14,21 @@ export const BongoSvg = (props: BongoProps) => {
     const secondary: CSSProperties = { fill: props.secondary } as CSSProperties
     const tertiary: CSSProperties =  { fill: props.tertiary } as CSSProperties
     const quaternary: CSSProperties = { fill: props.quaternary } as CSSProperties
-    const quinary: CSSProperties = { fill: props.quinary } as CSSProperties
+    const black: CSSProperties = { fill:" #FFFFFF" } as CSSProperties
 
     return (
         <svg className="instrument-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 511.998 511.998" style={svgStyle} xmlSpace="preserve">
-        <rect x="199.015" y="245.13" style={quinary} width="112.959" height="56.479"/>
-        <path style={quaternary} d="M462.08,167.63H322.758c-14.533,0-26.423,11.89-26.423,26.423v14.581
+        <rect x="199.015" y="245.13" style={black} width="112.959" height="56.479"/>
+        <path style={tertiary} d="M462.08,167.63H322.758c-14.533,0-26.423,11.89-26.423,26.423v14.581
             c0,14.533,11.89,26.423,26.423,26.423H462.08c14.533,0,26.423-11.89,26.423-26.423v-14.581
             C488.503,179.521,476.613,167.63,462.08,167.63z"/>
         <path style={primary} d="M342.356,208.635v-14.581c0-14.533,11.89-26.423,26.423-26.423h-46.02
             c-14.533,0-26.423,11.89-26.423,26.423v14.581c0,14.533,11.89,26.423,26.423,26.423h46.02
             C354.247,235.058,342.356,223.168,342.356,208.635z"/>
-        <rect x="295.229" y="203.231" style={tertiary} width="192.166" height="143.458"/>
+        <rect x="295.229" y="203.231" style={quaternary} width="192.166" height="143.458"/>
         <rect x="295.229" y="203.231" style={secondary} width="46.02" height="143.458"/>
-        <path style={quaternary} d="M189.575,166.041H50.253c-14.533,0-26.423,11.89-26.423,26.423v14.581
+        <path style={tertiary} d="M189.575,166.041H50.253c-14.533,0-26.423,11.89-26.423,26.423v14.581
             c0,14.533,11.89,26.423,26.423,26.423h139.322c14.533,0,26.423-11.89,26.423-26.423v-14.581
             C215.998,177.931,204.107,166.041,189.575,166.041z"/>
         <g>
@@ -42,7 +41,7 @@ export const BongoSvg = (props: BongoProps) => {
         </g>
         <path style={secondary} d="M454.281,312.494c-4.333,0-7.844-3.512-7.844-7.844v-60.344c0-4.332,3.511-7.844,7.844-7.844
             s7.844,3.512,7.844,7.844v60.344C462.125,308.982,458.614,312.494,454.281,312.494z"/>
-        <rect x="23.83" y="202.749" style={tertiary} width="192.166" height="143.458"/>
+        <rect x="23.83" y="202.749" style={quaternary} width="192.166" height="143.458"/>
         <rect x="23.83" y="202.749" style={secondary} width="46.02" height="143.458"/>
         <g>
             <circle style={primary} cx="107.038" cy="185.963" r="4.707"/>
