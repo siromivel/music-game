@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Web3 } from "../web3/Web3"
+import { Ethereum } from "../web3/Ethereum"
 import { MusicGame } from "../web3/MusicGame"
 
 interface SchoolState {
@@ -12,10 +12,11 @@ interface SchoolState {
 export class MusicSchool extends Component<{}, SchoolState> {
     public musicGame: MusicGame
 
-    constructor(props: { web3: any }) {
+    constructor(props: {}) {
         super(props)
+        Ethereum.getWeb3FromBrowser()
 
-        this.musicGame = new Web3().musicGame
+        this.musicGame = new Ethereum().musicGame
         this.state = {
             userBalance: "",
             studentAddress: "",
