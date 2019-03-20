@@ -20,6 +20,10 @@ body {
     margin-top: 1rem;
 }
 
+svg {
+    height: 4rem;
+}
+
 .text-center {
-    text-align: center
+    text-align: center;
 }
