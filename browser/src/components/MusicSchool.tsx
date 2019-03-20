@@ -38,7 +38,7 @@ export class MusicSchool extends PureComponent<{}, SchoolState> {
     render() {
         return (
             <div className="text-center margin-top-one">
-                {this.state.tokenSymbol ? <CatGif symbol={this.state.tokenSymbol}/> : ""}
+                {this.state.tokenSymbol ? <CatGif balance={this.state.balance} symbol={this.state.tokenSymbol}/> : ""}
                 <h1 className="text-center">Welcome to {this.state.tokenName} School</h1>
 
                 <TokenBalance balance={this.state.balance} symbol={this.state.tokenSymbol} />
