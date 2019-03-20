@@ -1,12 +1,10 @@
-"use strict"
-
 import React, { Component } from "react"
-import MusicSchool from "./MusicSchool"
+import { MusicSchool } from "./MusicSchool"
 import "../styles/App.css"
 
-class App extends Component {
-    randomCatGif() {
-        let cats = ["bongo", "keyboard", "pixel", "whistle"]
+export class App extends Component {
+    randomCatGif(): string {
+        let cats: string[] = ["bongo", "keyboard", "pixel", "whistle"]
         return `../assets/${cats[Math.floor(Math.random() * cats.length)]}cat.gif`
     }
 
@@ -21,5 +19,3 @@ class App extends Component {
         )
     }
 }
-
-export default App
