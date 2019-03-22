@@ -22,7 +22,7 @@ export class MusicLesson extends PureComponent<{ instrumentToken: InstrumentToke
 
     render() {
         return (
-            <div>
+            <div className="music-lesson">
                 <button onClick={this.giveLesson.bind(this)}>Give Lesson</button>
                 <input
                     type="text"
