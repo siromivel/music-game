@@ -35,6 +35,8 @@ contract PaintMixer {
         for (uint256 i = 0; i < 4; i++) {
             colors[i] = _get24Bits(_colors, i);
         }
+
+        return colors;
     }
 
     function _get24Bits(
