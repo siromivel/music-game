@@ -24,8 +24,8 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js", ".jsx",]
     },
     output: {
-        path: path.resolve(__dirname, "browser/dist/"),
-        publicPath: "browser/dist/",
+        path: path.resolve(__dirname, "dist/"),
+        publicPath: "dist/",
         filename: "bundle.js"
     },
     devServer: {
