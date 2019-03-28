@@ -3,12 +3,14 @@
         "esModuleInterop": true,
         "jsx": "react",
         "module": "commonjs",
+        "outDir": "dist",
         "resolveJsonModule": true,
         "strict": true,
         "target": "ES6"
     },
     "include": [
-        "browser/src/*"
+        "browser/src/*",
+        "lib/*"
     ],
     "exclude": [
         "dist",
