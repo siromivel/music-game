@@ -7,6 +7,6 @@ function gifSrc(balance: number | "", symbol: string): string {
 
 export const CatGif = (props: { balance: number | "", symbol: string }) =>
     <img
-        className={`${SymbolToGifMap[props.symbol as keyof typeof SymbolToGifMap]}-cat-gif block-center`}
+        className={`${SymbolToGifMap[props.symbol as keyof typeof SymbolToGifMap]}-gif cat-gif block-center`}
         src={`../assets/${gifSrc(props.balance, props.symbol)}cat.gif`}
     />
