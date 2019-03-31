@@ -17,15 +17,18 @@ contract InstrumentToken is ERC721Full {
         string memory _name,
         string memory _symbol,
         address _paintMixer
-    ) ERC721Full(_name, _symbol) public {
+    ) ERC721Full(
+        _name,
+        _symbol
+    ) public {
         owner = msg.sender;
         setPaintMixerAddress(_paintMixer);
 
         uint24[] memory colors = new uint24[](4);
-        colors[0] = uint24(1);
-        colors[1] = uint24(1);
-        colors[2] = uint24(1);
-        colors[3] = uint24(1);
+        colors[0] = uint24(16770167);
+        colors[1] = uint24(16754483);
+        colors[2] = uint24(16774604);
+        colors[3] = uint24(16761975);
 
         Instrument memory genesis = _createInstrument(colors);
         instruments.push(genesis);
@@ -45,7 +48,11 @@ contract InstrumentToken is ERC721Full {
         _;
     }
 
-    function _createInstrument(uint24[] memory _colors) internal view returns(Instrument memory) {
+    function _createInstrument(
+        uint24[] memory _colors
+    ) internal view returns(
+        Instrument memory
+    ) {
         Instrument memory _instrument = Instrument({
             primary: _colors[0],
             secondary: _colors[1],
@@ -57,13 +64,25 @@ contract InstrumentToken is ERC721Full {
         return _instrument;
     }
 
-    function setPaintMixerAddress(address _new) public _onlyOwner {
+    function setPaintMixerAddress(
+        address _new
+    ) public _onlyOwner {
         paintMixer = PaintMixer(_new);
     }
 
-    function getTokensOfSender() public view returns(uint256[] memory) {
-        if (balanceOf(msg.sender) == 0) return new uint256[](0);
-        return _tokensOfOwner(msg.sender);
+    function getTokensOfAddress(
+        address _address
+    ) public view returns (
+        uint256[] memory
+    ) {
+        return balanceOf(_address) == 0 ? new uint256[](0) : _tokensOfOwner(_address);
+    }
+
+    function getTokensOfSender()
+    public view returns (
+        uint256[] memory
+    ) {
+        return getTokensOfAddress(msg.sender);
     }
 
     function getInstrument(
@@ -76,13 +95,16 @@ contract InstrumentToken is ERC721Full {
         uint160 nextProductionBlock
     ) {
         Instrument memory instrument = instruments[_id];
-
         return (instrument.primary, instrument.secondary, instrument.tertiary, instrument.quaternary, instrument.nextProductionBlock);
     }
 
-    function musicLesson(address _student) public returns (bool) {
+    function musicLesson(
+        address _student
+    ) public returns (
+        bool
+    ) {
         require(balanceOf(msg.sender) > 0, "REQUIRES_INSTRUMENT");
-        require(balanceOf(_student) == 0, "STUDENT_MUST_NOT_HAVE_INSTRUMENT");
+        require(balanceOf(_student)  == 0, "STUDENT_MUST_NOT_HAVE_INSTRUMENT");
 
         // Get parent token
         uint256[] memory teacherTokens = getTokensOfSender();

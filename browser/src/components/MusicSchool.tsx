@@ -9,7 +9,7 @@ import { TokenBalance } from "./TokenBalance"
 type SchoolState = {
     tokenName: string,
     tokenSymbol: string,
-    balance: number | ""
+    balance: number | "",
 }
 
 export class MusicSchool extends PureComponent<{}, SchoolState> {
@@ -23,7 +23,7 @@ export class MusicSchool extends PureComponent<{}, SchoolState> {
         this.state = {
             balance: "",
             tokenName: "",
-            tokenSymbol: ""
+            tokenSymbol: "",
         }
     }
 
@@ -31,7 +31,7 @@ export class MusicSchool extends PureComponent<{}, SchoolState> {
         this.setState({
             balance: await this.instrumentToken.getBalance(),
             tokenName: await this.instrumentToken.getName(),
-            tokenSymbol: await this.instrumentToken.getSymbol()
+            tokenSymbol: await this.instrumentToken.getSymbol(),
         })
     }
 
