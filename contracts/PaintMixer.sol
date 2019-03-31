@@ -11,7 +11,7 @@ contract PaintMixer {
         uint256 _secondary,
         uint256 _targetBlock
     ) public view returns(uint24[] memory) {
-        require(block.number > _targetBlock, "TARGET_TOO_LOW");
+        require(block.number > _targetBlock, "TARGET_TOO_HIGH");
 
         uint256 rand = uint256(blockhash(_targetBlock));
 
