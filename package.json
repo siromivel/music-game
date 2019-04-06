@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "scripts/test.sh"
+    "test": "scripts/test.sh",
+    "format": "prettier --write \"browser/src/**/*.ts\" && prettier --write \"browser/src/**/*.tsx\""
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "css-loader": "^2.1.1",
+    "prettier": "^1.16.4",
     "style-loader": "^0.23.1",
     "typescript": "^3.3.4000",
     "webpack": "^4.29.6",
