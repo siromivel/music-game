@@ -17,7 +17,7 @@ export class InstrumentToken {
         const userAddress: string = await this.signer.getAddress()
 
         return this.instrumentTokenContract.balanceOf(userAddress)
-            .then((balance: BigNumber) => balance)
+            .then((balance: BigNumber) => balance.toNumber())
     }
 
     getName(): Promise<string> {
